@@ -60,7 +60,9 @@
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Architecture Overview
+
+The system is built on a modern decoupled architecture separating the client-side presentation from server-side AI processing.
 
 ```
 ┌─────────────┐     HTTP/WS      ┌─────────────────┐
@@ -76,15 +78,32 @@
                      └──────────┘  └───────────┘  └───────────┘
 ```
 
-### Flow
+### Components
+1. **Frontend**: A Next.js (App Router) client handling the UI, state management (Zustand), and real-time Socket.IO subscriptions.
+2. **Backend**: An Express API managing data persistence, validation, and queuing.
+3. **Queue Workers**: Background BullMQ workers (running alongside the Express server) that handle heavy AI LLM processing and PDF generation without blocking the main event loop.
+4. **Data Layer**: MongoDB stores assignment metadata, while Redis is used as the high-speed backend for BullMQ queues and temporary caching of generated PDFs.
 
-1. **User** fills out the assignment form (school, subject, class, question types)
-2. **Frontend** sends a POST request to `/api/assignments`
-3. **Backend** saves the assignment to MongoDB and enqueues an AI generation job via BullMQ
-4. **Assignment Worker** picks up the job, calls Google Gemini AI, and saves the result
-5. **WebSocket** emits `assignment-completed` event to the frontend
-6. **Frontend** navigates to the output page displaying the generated paper
-7. **PDF Download** — user clicks download → backend queues a PDF job → PDFKit renders the paper → stored temporarily in Redis → downloaded by the client
+---
+
+## 🚀 Approach & Technical Decisions
+
+When designing VedaAI, several key technical approaches were taken to ensure a robust, scalable, and highly responsive user experience:
+
+1. **Background Job Processing (BullMQ & Redis)**
+   Generating structured AI responses takes 10-25 seconds, which would easily cause HTTP timeouts if done synchronously. To solve this, the backend immediately responds with a `201 Created` and delegates the heavy AI generation to a BullMQ worker queue. This keeps the API lightning-fast and highly resilient.
+
+2. **Real-time Event Broadcasting (Socket.IO)**
+   Since HTTP requests cannot wait 25 seconds for the AI to finish, we use WebSockets. Once the BullMQ worker completes the Gemini API call, it emits an `assignment-completed` event directly to the frontend, instantly updating the UI from a loading state to the final output.
+
+3. **AI Model Fallback Chain & Resilience**
+   LLM APIs can experience rate limits (HTTP 429) or transient downtime (HTTP 503). The `aiService` implements a strict exponential backoff (8s, 16s, 24s) and an automatic model fallback chain (`gemini-2.5-flash` → `gemini-2.0-flash-lite` → etc.) to guarantee that the assignment generates successfully even if the primary model fails.
+
+4. **Strict Output Formatting**
+   LLMs naturally output Markdown. We engineered a highly specific prompt that enforces strict JSON constraints and automatically strips markdown code fences (` ```json `) on the backend, ensuring the frontend always receives clean, strictly-typed data that it can render reliably.
+
+5. **Client-Side State Persistence**
+   Zustand is configured with `persist` middleware, meaning that users won't lose their generated assignments or form data if they accidentally refresh the browser.
 
 ---
 
