@@ -16,11 +16,13 @@ initSocket(server);
 // MIDDLEWARE
 app.use(
   cors({
-    origin: [
-      "https://veda-ai-chi-neon.vercel.app/",
-      "https://veda-ai-0elt.onrender.com/api",
-      "http://localhost:3000",
-    ],
+    origin: function (origin, callback) {
+      if (!origin || origin.includes("localhost") || origin.includes("vercel.app") || origin.includes("render.com")) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
