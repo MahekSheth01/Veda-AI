@@ -1,0 +1,177 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 12px 0px 24px;
+  gap: 10px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 16px;
+  margin: 12px 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.backBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: #FFFFFF;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+}
+
+.breadcrumb {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.04em;
+  color: #A9A9A9;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.bellWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background: #F6F6F6;
+  border-radius: 100px;
+  position: relative;
+  cursor: pointer;
+}
+
+.dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  right: 6px;
+  top: 4px;
+  background: #FF5623;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.profileWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+  height: 44px;
+  background: #FFFFFF;
+  filter: drop-shadow(0px 16px 48px rgba(0, 0, 0, 0.12)) drop-shadow(0px 32px 48px rgba(0, 0, 0, 0.2));
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.profileAvatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: #F6F6F6;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.profileName {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.04em;
+  color: #303030;
+}
+
+.desktopBreadcrumb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobileLogo {
+  display: none;
+}
+
+.mobileMenuBtn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin: 12px;
+    border-radius: 8px;
+    padding: 0px 12px;
+  }
+  
+  .desktopBreadcrumb {
+    display: none;
+  }
+  
+  .mobileLogo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .mobileMenuBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+  }
+  
+  .profileName {
+    display: none;
+  }
+  
+  .chevron {
+    display: none;
+  }
+  
+  .profileWrapper {
+    background: transparent;
+    filter: none;
+    padding: 0;
+    box-shadow: none;
+  }
+}

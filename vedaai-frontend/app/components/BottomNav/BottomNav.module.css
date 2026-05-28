@@ -1,0 +1,84 @@
+.bottomNavContainer {
+  position: fixed;
+  bottom: 11px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+  z-index: 50;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.floatingActionWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.fabBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background: #FFFFFF;
+  box-shadow: 0px 16px 48px rgba(0, 0, 0, 0.12), 0px 32px 48px rgba(0, 0, 0, 0.2);
+  border-radius: 100px;
+  text-decoration: none;
+}
+
+.bottomNav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 24px;
+  width: 100%;
+  max-width: 400px;
+  height: 72px;
+  background: #181818;
+  box-shadow: 0px 16px 48px rgba(0, 0, 0, 0.12), 0px 32px 48px rgba(0, 0, 0, 0.2);
+  border-radius: 24px;
+  box-sizing: border-box;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 26px;
+}
+
+.navItem.active {
+  color: #FFFFFF;
+}
+
+.navItem.active .iconWrapper {
+  width: 52px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+@media (min-width: 768px) {
+  .bottomNavContainer {
+    display: none;
+  }
+}

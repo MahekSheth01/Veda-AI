@@ -1,0 +1,36 @@
+.layoutContainer {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--bg-main);
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .mainContent {
+    padding-left: 328px; /* 304px (sidebar) + 24px (gap) */
+  }
+}
+
+.pageContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  padding-bottom: 90px; /* Space for bottom nav on mobile */
+}
+
+@media (min-width: 768px) {
+  .pageContent {
+    padding: 32px;
+    padding-bottom: 32px;
+  }
+}
