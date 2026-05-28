@@ -5,7 +5,7 @@ import styles from './AssignmentOutput.module.css';
 import { Download, Loader2, AlertCircle, RefreshCcw, ArrowLeft, Plus, Grid, ChevronDown, User } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useAssignmentStore } from '../../store/assignmentStore';
+import { useAssignmentStore, GeneratedSection, GeneratedQuestion, AnswerKeySection, AnswerKeyAnswer } from '../../store/assignmentStore';
 import { api, API_BASE_URL } from '../../services/api';
 import { socket } from '../../services/socket';
 
@@ -159,13 +159,13 @@ export default function AssignmentOutput() {
           <span className={styles.studentInfoText}>Class: {generatedAssignment.class} &nbsp;&nbsp; Section: __________</span>
         </div>
 
-        {generatedAssignment.sections && generatedAssignment.sections.map((section: any, sIndex: number) => (
+        {generatedAssignment.sections && generatedAssignment.sections.map((section: GeneratedSection, sIndex: number) => (
           <div key={sIndex} className={styles.sectionBlock}>
             <h2 className={styles.sectionTitle}>{section.title}</h2>
             <h3 className={styles.sectionSubtitle}>{section.instruction}</h3>
 
             <div className={styles.questionsList}>
-              {section.questions.map((q: any, qIndex: number) => (
+              {section.questions.map((q: GeneratedQuestion, qIndex: number) => (
                 <div key={qIndex} className={styles.questionItem}>
                   <div className={styles.questionTextWrapper}>
                     <span className={`${styles.difficultyBadge} ${getDifficultyClass(q.difficulty)}`}>
@@ -194,11 +194,11 @@ export default function AssignmentOutput() {
         {generatedAssignment.answerKey && generatedAssignment.answerKey.length > 0 && (
           <div className={styles.answerKeySection}>
             <h3 className={styles.answerKeyTitle}>Answer Key</h3>
-            {generatedAssignment.answerKey.map((akSection: any, i: number) => (
+            {generatedAssignment.answerKey.map((akSection: AnswerKeySection, i: number) => (
               <div key={i} style={{ marginBottom: 24 }}>
                 <h4 style={{ fontSize: 18, fontWeight: 600, marginBottom: 8, textAlign: 'center' }}>{akSection.sectionTitle}</h4>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 12 }}>
-                  {akSection.answers.map((ans: any, j: number) => (
+                  {akSection.answers.map((ans: AnswerKeyAnswer, j: number) => (
                     <div key={j} className={styles.answerKeyItem}>
                       <span style={{ fontWeight: 600, marginRight: 8 }}>Q{ans.questionNo}:</span>
                       <span>{ans.answer}</span>
