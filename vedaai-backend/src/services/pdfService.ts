@@ -39,11 +39,12 @@ const DIFFICULTY_COLORS: Record<string, string> = {
  * Check if we need a new page, and add one if the remaining space is
  * less than the requested height.
  */
-function ensureSpace(doc: PDFKit.PDFDocument, needed: number) {
+function ensureSpace(doc: any, needed: number) {
   if (doc.y + needed > doc.page.height - 60) {
     doc.addPage();
   }
 }
+
 
 export const generateExamPaperPDF = (
   paper: GeneratedPaper
@@ -54,7 +55,8 @@ export const generateExamPaperPDF = (
       margins: { top: 50, bottom: 50, left: 60, right: 60 },
     });
     const chunks: Buffer[] = [];
-    doc.on("data", (chunk) => chunks.push(chunk));
+    doc.on("data", (chunk: Buffer) => chunks.push(chunk));
+
     doc.on("end", () => resolve(Buffer.concat(chunks)));
     doc.on("error", reject);
     const pageW = doc.page.width - 120; // usable width
