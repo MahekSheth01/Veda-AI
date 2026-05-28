@@ -263,10 +263,19 @@
   }
   .contentWrapper {
     width: 100%;
-    padding: 0 20px;
+    max-width: 373px;
+    padding: 0 10px;
+    gap: 32px;
+  }
+  .textWrapper {
+    width: 100%;
+    max-width: 373px;
+    gap: 12px;
+    height: auto;
   }
   .subText {
     width: 100%;
+    max-width: 373px;
     height: auto;
   }
 }
