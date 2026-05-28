@@ -34,11 +34,7 @@ export default function CreateAssignment() {
   const totalQuestions = questionTypes.reduce((s, q) => s + q.questions, 0);
   const totalMarks = questionTypes.reduce((s, q) => s + q.questions * q.marks, 0);
 
-  useEffect(() => {
-    if (generationStatus === "loading") {
-      setGenerationStatus("idle");
-    }
-  }, [generationStatus, setGenerationStatus]);
+  // Removed buggy useEffect that was instantly resetting generationStatus
 
   const onSubmit = async (data: FormData) => {
     if (questionTypes.length === 0) {
