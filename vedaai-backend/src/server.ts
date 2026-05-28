@@ -14,7 +14,16 @@ const server = http.createServer(app);
 // SOCKET
 initSocket(server);
 // MIDDLEWARE
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://veda-e050dyjjf-maheksheth01s-projects.vercel.app",
+      "https://veda-ai-0elt.onrender.com",
+      "http://localhost:3000",
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 // ROUTES
 app.use("/api/assignments", assignmentRoutes);
