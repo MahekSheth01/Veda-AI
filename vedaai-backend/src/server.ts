@@ -17,8 +17,8 @@ initSocket(server);
 app.use(
   cors({
     origin: [
-      "https://veda-e050dyjjf-maheksheth01s-projects.vercel.app",
-      "https://veda-ai-0elt.onrender.com",
+      "https://veda-ai-chi-neon.vercel.app/",
+      "https://veda-ai-0elt.onrender.com/api",
       "http://localhost:3000",
     ],
     credentials: true,
