@@ -189,15 +189,15 @@ export default function CreateAssignment() {
           <div className={styles.basicInputsGrid}>
             <div className={styles.basicInputRow}>
               <span className={styles.uploadLabelText}>School Name</span>
-              <input type="text" {...register("schoolName")} placeholder="e.g. DPS Bokaro" className={styles.basicInput} />
+              <input type="text" {...register("schoolName")} required placeholder="e.g. DPS Bokaro" className={styles.basicInput} />
             </div>
             <div className={styles.basicInputRow}>
               <span className={styles.uploadLabelText}>Subject</span>
-              <input type="text" {...register("subject")} placeholder="e.g. Mathematics" className={styles.basicInput} />
+              <input type="text" {...register("subject")} required placeholder="e.g. Mathematics" className={styles.basicInput} />
             </div>
             <div className={styles.basicInputRow}>
               <span className={styles.uploadLabelText}>Class</span>
-              <input type="text" {...register("grade")} placeholder="e.g. Class 10" className={styles.basicInput} />
+              <input type="text" {...register("grade")} required placeholder="e.g. Class 10" className={styles.basicInput} />
             </div>
           </div>
 
@@ -206,7 +206,7 @@ export default function CreateAssignment() {
             <div className={styles.dueDateCol}>
               <span className={styles.dueDateLabel}>Due Date</span>
               <div className={styles.dueDateInputWrapper}>
-                <input type="date" id="dueDateInput" {...register("dueDate")} className={styles.dueDateInput} placeholder="DD-MM-YYYY" />
+                <input type="date" id="dueDateInput" {...register("dueDate")} required className={styles.dueDateInput} placeholder="DD-MM-YYYY" />
                 <CalendarPlus size={24} color="#A9A9A9" style={{ cursor: 'pointer' }} onClick={() => (document.getElementById('dueDateInput') as HTMLInputElement)?.showPicker()} />
               </div>
             </div>
