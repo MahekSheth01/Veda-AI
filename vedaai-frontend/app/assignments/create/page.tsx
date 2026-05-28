@@ -51,8 +51,8 @@ export default function CreateAssignment() {
         schoolName: data.schoolName || "Delhi Public School",
         subject: data.subject || "General Subject",
         grade: data.grade || "10th Grade",
-        dueDate: data.dueDate,
-        additionalInfo: data.additionalInfo,
+        dueDate: data.dueDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        additionalInfo: data.additionalInfo || "No additional instructions provided.",
         questionTypes: questionTypes.map(({ title, questions, marks }) => ({ title, questions, marks })),
       };
       setLastSubmittedData({ ...payload, questionTypes });
