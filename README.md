@@ -256,4 +256,3 @@ This project is for educational purposes.
 <p align="center">
   Built with ❤️ by Mahek Sheth
 </p>
-
